@@ -18,7 +18,7 @@ pip install requests
 直接获取cmdshell
 python solr-rce.py -u "http://1.2.3.4"
 
-![](https://github.com/theLSA/solr-rce/raw/master/demo/solrce00.png)
+![](https://github.com/theLSA/solr-rce/raw/master/solrce00.png)
 
 # 反馈
 
