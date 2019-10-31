@@ -16,7 +16,7 @@ apache solr 5.x - 8.2.0 rce (with config api)
 
 pip install requests
 
-直接获取cmdshell
+直接获取cmdshell,注意最后不要有斜杠！
 <br/>
 python solr-rce.py -u "http://1.2.3.4"
 
