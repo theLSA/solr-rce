@@ -46,14 +46,14 @@ def ModifyConfig(tgtUrl,pathName):
     
     else:
         print 'Modify config...'
-        modifyConfig_json={"update-queryresponsewriter": {"class": "solr.VelocityResponseWriter", "name": "velocity", "params.resource.loader.enabled": "true", "solr.resource.loader.enabled": "true", "startup": "lazy", "template.base.dir": ""}}
+        modifyConfig_json={"update-queryresponsewriter": {"startup": "lazy", "name": "velocity", "class": "solr.VelocityResponseWriter", "template.base.dir": "", "solr.resource.loader.enabled": "true", "params.resource.loader.enabled": "true"}}
         rsp2 = requests.post(modifyConfig_url, headers=modifyConfig_headers, json=modifyConfig_json)
-        rsp2status = json.loads(rsp1.text)['status']
-        print rsp2status
-        if rsp1status == 0:
+        rsp2status = json.loads(rsp2.text)['responseHeader']['status']
+        #print rsp2status
+        if rsp2status == 0:
             print 'Modify config success!'
         else:
-	    print 'Modify config failed!'
+	    print 'Modify config failed!' + str(rsp2status)
             sys.exit()
     
 
